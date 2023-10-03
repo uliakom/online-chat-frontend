@@ -1,24 +1,29 @@
-import logo from './images/logo/logo-dark-theme.png';
-import './App.css';
+
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { GlobalStyle } from 'styles/global.styles';
+import Loader from 'components/Loader';
+
+
+
+
+const Auth = lazy(() => import('pages/Auth/Auth'));
+const Chat = lazy(() => import('pages/Chat/Chat'));
 
 function App() {
+  // замінити на хук getUser
+  const [user, setUser] = useState('');  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter basename="">
+      <GlobalStyle />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={ user?<Chat/>:<Auth/>} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+    
   );
 }
 
