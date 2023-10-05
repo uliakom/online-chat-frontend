@@ -15,7 +15,7 @@ function App() {
   const [user, setUser] = useState('');  
 
   return (
-    <BrowserRouter basename='/online-chat-frontend/'>
+    <BrowserRouter basename='/'>
       <GlobalStyle />
       <Suspense fallback={<Loader />}>
         <Routes>
