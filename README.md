@@ -4,7 +4,7 @@ A real-time chat application that allows users to send messages and images
 
 ![My chat logo](images/logo/logo-white-theme.png)
 
-Server part of aplication is here [App backend](https://github.com/uliakom?tab=repositories).
+Server part of aplication is here [App backend](https://github.com/uliakom/online-chat-backend).
 
 ## Features
 

@@ -1,29 +1,29 @@
-
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense  } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GlobalStyle } from 'styles/global.styles';
 import Loader from 'components/Loader';
 
-
-
-
-const Auth = lazy(() => import('pages/Auth/Auth'));
-const Chat = lazy(() => import('pages/Chat/Chat'));
+// const Auth = lazy(() => import('pages/Auth/Auth'));
+const ChatPage = lazy(() => import('pages/ChatPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const AvatarPage = lazy(() => import('pages/AvatarPage'));
 
 function App() {
-  // замінити на хук getUser
-  const [user, setUser] = useState('');  
+
 
   return (
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename="/">
       <GlobalStyle />
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={ user?<Chat/>:<Auth/>} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/setAvatar" element={<AvatarPage />} />
+          <Route path="/" element={<ChatPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
-    
   );
 }
 
