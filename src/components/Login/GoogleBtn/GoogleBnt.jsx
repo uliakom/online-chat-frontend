@@ -17,7 +17,7 @@ const GoogleBtn = () => {
           onSuccess={onSuccess}
           onError={onError}
           type="standard"
-          size="large"
+          size="medium"
           text="signin"
           shape="pill"
         />

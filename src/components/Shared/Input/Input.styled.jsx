@@ -4,10 +4,14 @@ import mediaBp from 'styles/breackpoints';
 
 export const Input = styled(Field)`
   width: 100%;
-  color: transparent;
+  box-sizing: border-box;
+  background-color: transparent;
   margin-bottom: 10px;
+  border: 1px solid grey;
   border-radius: 5px;
+  padding-left: 10px;
   ${mediaBp('tablet')} {
+    height: 30px;
     margin-bottom: 20px;
   }
   ${mediaBp('desktop')} {

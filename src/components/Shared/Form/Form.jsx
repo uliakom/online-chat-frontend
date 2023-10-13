@@ -13,7 +13,7 @@ const StyledForm = ({ initialValues, children, schema, action }) => {
           alert(JSON.stringify(values, null, 2));
         }}
       >
-        {children}
+        {formik => <Form>{children}</Form>}
       </Formik>
     </Container>
   );

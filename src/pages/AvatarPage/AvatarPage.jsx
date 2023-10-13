@@ -1,9 +1,11 @@
-import { Container } from 'pages/LoginPage/LoginPage.styled';
+import { Container } from './AvatarPage.styled';
+import Button from 'components/Shared/Button/Button';
 
 const AvatarPage = () => {
   return (
     <Container>
-      <h2>Choose your avatar</h2>
+      <h2>Choose an avatar as your profile picture</h2>
+      <Button>SET AS AVATAR</Button>
     </Container>
   );
 };
