@@ -31,7 +31,7 @@ const Loginform = () => {
           }}
         >
           <CustomInput type="email" name="email" id="email" placeholder="Email" />
-
+          {/* {errors.email && touched.email ? <div>{errors.email}</div> : null} */}
           <CustomInput type="password" name="password" id="password" placeholder="Password" />
 
           <BtnWrapp>

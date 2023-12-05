@@ -7,7 +7,7 @@ export const StyledBtn = styled.button`
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   width: 70%;
   background-image: linear-gradient(to right,#e052a0,#f15c41);
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};;
   border-radius: 10px;
   color: #fff;
   font-weight: 500;

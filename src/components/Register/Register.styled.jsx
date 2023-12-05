@@ -4,7 +4,7 @@ import { Link as link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 200px;
-  height: 350px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,13 +14,28 @@ export const Container = styled.div`
   box-sizing: border-box;
   ${mediaBp('tablet')} {
     width: 300px;
-    height: 400px;
+    height: 100%;
     padding: 20px;
   }
   ${mediaBp('desktop')} {
     width: 400px;
-    height: 500px;
+    height: 100%;
     padding: 30px;
+  }
+`;
+
+export const Title = styled.h2`
+  text-align: center;
+  color: grey;
+  margin-bottom: 20px;
+  font-size: 16px;
+  ${mediaBp('tablet')} {
+    margin-bottom: 30px;
+    font-size: 24px;
+  }
+  ${mediaBp('desktop')} {
+    margin-bottom: 40px;
+    font-size: 36px;
   }
 `;
 
@@ -66,4 +81,8 @@ export const Link = styled(link)`
   text-decoration-line: underline;
   color: #fd6262;
   margin-left: 5px;
+`;
+
+export const ErrorMsg = styled.p`
+  color: #fd6262;
 `;

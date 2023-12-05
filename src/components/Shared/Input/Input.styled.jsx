@@ -10,6 +10,7 @@ export const Input = styled(Field)`
   border: 1px solid grey;
   border-radius: 5px;
   padding-left: 10px;
+  color: white;
   ${mediaBp('tablet')} {
     height: 30px;
     margin-bottom: 20px;
