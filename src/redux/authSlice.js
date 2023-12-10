@@ -55,7 +55,16 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = payload?.message;
         state.verifyErrorCode = payload?.status;
-      }),
+      })
+   .addCase(logIn.fulfilled, handleUserEnter)
+      .addCase(logIn.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(logIn.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload?.message;
+        state.errorCode = payload?.status;
+      })
 });
 
 export const { resetErrors, resetUser, updateToken } = authSlice.actions;

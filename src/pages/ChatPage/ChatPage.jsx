@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import authSelectors from 'redux/authSelectors';
 
 const ChatPage = () => {
   const navigate = useNavigate();
-  // замінити на хук getUser
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useSelector(authSelectors.getUserToken);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      console.log('user is logged in');
-    } else {
+    if (!isLoggedIn) {
       navigate('/register');
     }
   }, [isLoggedIn]);

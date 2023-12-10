@@ -1,11 +1,15 @@
 import GoogleBtn from './GoogleBtn';
 import * as Yup from 'yup';
-
+import { Formik, Form } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Link } from 'components/Register/Register.styled';
-import { BtnWrapp } from './Login.styled';
-import StyledForm from 'components/Shared/Form';
+import { Title, BtnWrapp, ErrorMsg } from './Login.styled';
 import Button from 'components/Shared/Button/Button';
 import CustomInput from '../Shared/Input/Input';
+import { logIn } from 'redux/operation';
+import authSelectors from 'redux/authSelectors';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -16,35 +20,92 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Loginform = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loginStatusCode = useSelector(authSelectors.selectErrorCode);
+
+  const handleSubmit = values => {
+    const { email, password } = values;
+    dispatch(logIn({ email, password }));
+    if (loginStatusCode === 403) {
+      Report.failure(' Failure', 'Email not verified', 'Ok');
+    }
+    if (loginStatusCode === 401) {
+      Report.failure(' Failure', 'Email or password is wrong', 'Ok');
+    }
+    // if (loginStatusCode === 200) {
+    // }
+    navigate('/', { replace: true });
+  };
+
   return (
     <div>
       <Container>
-        <StyledForm
+        <Title>Login</Title>
+        <Formik
           initialValues={{
             email: '',
             password: '',
           }}
-          action="login"
-          schema={LoginSchema}
-          onSubmit={values => {
-            console.log(values);
-          }}
+          validationSchema={LoginSchema}
+          onSubmit={handleSubmit}
         >
-          <CustomInput type="email" name="email" id="email" placeholder="Email" />
-          {/* {errors.email && touched.email ? <div>{errors.email}</div> : null} */}
-          <CustomInput type="password" name="password" id="password" placeholder="Password" />
+          {formik => {
+            const {
+              values,
+              handleChange,
+              handleSubmit,
+              errors,
+              touched,
+              handleBlur,
+              isValid,
+              dirty,
+            } = formik;
+            return (
+              <Form action="login" onSubmit={handleSubmit}>
+                {errors.email && touched.email ? <ErrorMsg>{errors.email}</ErrorMsg> : null}
+                <CustomInput
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  autoComplete="off"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
 
-          <BtnWrapp>
-            <Button type="submit">login</Button>
-            <GoogleBtn />
-          </BtnWrapp>
-          <p>
-            Don't have an account?
-            <span>
-              <Link to="/register">REGISTER</Link>
-            </span>
-          </p>
-        </StyledForm>
+                {errors.password && touched.password ? (
+                  <ErrorMsg>{errors.password}</ErrorMsg>
+                ) : null}
+
+                <CustomInput
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  autoComplete="off"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+
+                <BtnWrapp>
+                  <Button type="submit" disabled={!(dirty && isValid)}>
+                    login
+                  </Button>
+                  <GoogleBtn />
+                </BtnWrapp>
+                <p>
+                  Don't have an account?
+                  <span>
+                    <Link to="/register">REGISTER</Link>
+                  </span>
+                </p>
+              </Form>
+            );
+          }}
+        </Formik>
       </Container>
     </div>
   );

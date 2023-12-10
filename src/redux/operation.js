@@ -37,3 +37,30 @@ export const verifyMail = createAsyncThunk('/verify', async (credentials, thunkA
     return thunkAPI.rejectWithValue(error);
   }
 });
+
+export const logIn = createAsyncThunk('/login', async (credentials, thunkAPI) => {
+  try {
+    const data = await api.logIn(credentials);
+    return data;
+  } catch ({ response }) {
+    const { status, data } = response;
+    const error = {
+      status,
+      message: data.message,
+    };
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+// export const logOut = createAsyncThunk('/logout', async (_, thunkAPI) => {
+//   try {
+//     await api.logout();
+//   } catch ({ response }) {
+//     const { status, data } = response;
+//     const error = {
+//       status,
+//       message: data.message,
+//     };
+//     return thunkAPI.rejectWithValue(error);
+//   }
+// });

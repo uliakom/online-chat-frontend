@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/operation';
@@ -34,6 +34,7 @@ const RegisterForm = () => {
   const [visibleConfirm, setVisibleConfirm] = useState(false);
   const [verificationOpen, setVerificationOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [email, setEmail] = useState('');
 
   const handleClickVisible = () => {
     setVisible(!visible);
@@ -53,6 +54,7 @@ const RegisterForm = () => {
     }
 
     dispatch(register({ username, email, password }));
+    setEmail(email);
     resetForm();
     setDisabled(true);
     setVerificationOpen(true);
@@ -153,7 +155,7 @@ const RegisterForm = () => {
           );
         }}
       </Formik>
-      {verificationOpen && <Verification />}
+      {verificationOpen && <Verification email={email} />}
     </Container>
   );
 };

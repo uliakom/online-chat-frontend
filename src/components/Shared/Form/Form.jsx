@@ -1,7 +1,6 @@
 import { Formik, Form } from 'formik';
 import { Container, Title } from './Form.styled';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { register } from 'redux/operation';
 
 const StyledForm = ({ initialValues, children, schema, action }) => {
