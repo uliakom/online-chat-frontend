@@ -33,9 +33,9 @@ const Loginform = () => {
     if (loginStatusCode === 401) {
       Report.failure(' Failure', 'Email or password is wrong', 'Ok');
     }
-    // if (loginStatusCode === 200) {
-    // }
-    navigate('/', { replace: true });
+    if (loginStatusCode === 204) {
+      navigate('/', { replace: true });
+    }
   };
 
   return (
