@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import authSelectors from 'redux/authSelectors';
 import darkLogo from 'images/logo/logo-dark-theme.png';
 import NavBar from 'components/NavBar';
-import Logs from 'components/Logs';
+import ChatLogs from 'components/ChatLogs';
 import { Container, ChatContainer, LogsContainer, MessagesContainer } from './Chat.styled';
 
 const ChatPage = () => {
@@ -25,7 +25,7 @@ const ChatPage = () => {
           <div>
             <img src={darkLogo} alt="logo" width="80" />
           </div>
-          <Logs />
+          <ChatLogs />
         </LogsContainer>
         <MessagesContainer></MessagesContainer>
       </ChatContainer>
