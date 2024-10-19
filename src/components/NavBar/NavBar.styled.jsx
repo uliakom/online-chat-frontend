@@ -11,4 +11,15 @@ export const Container = styled.div`
 
 export const StyledLink = styled(Link)`
   color: white;
+  font-size: 16px;
+`;
+
+export const UserName = styled.p`
+  color: red;
+  font-size: 20px;
+`;
+
+export const ExitButton = styled.button`
+  color: white;
+  font-size: 16px;
 `;

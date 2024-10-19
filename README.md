@@ -16,3 +16,8 @@ Emoji preview Sending image preview
 Client: Javascript, React, Socket io
 
 Server: Node, Express, MongoDB
+
+## Support me
+
+If my app and code is usefull you can support me and buy some
+[coffee](https://www.buymeacoffee.com/uliaska007)

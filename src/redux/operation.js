@@ -52,15 +52,15 @@ export const logIn = createAsyncThunk('/login', async (credentials, thunkAPI) =>
   }
 });
 
-// export const logOut = createAsyncThunk('/logout', async (_, thunkAPI) => {
-//   try {
-//     await api.logout();
-//   } catch ({ response }) {
-//     const { status, data } = response;
-//     const error = {
-//       status,
-//       message: data.message,
-//     };
-//     return thunkAPI.rejectWithValue(error);
-//   }
-// });
+export const logOut = createAsyncThunk('/logout', async (_, thunkAPI) => {
+  try {
+    await api.logout();
+  } catch ({ response }) {
+    const { status, data } = response;
+    const error = {
+      status,
+      message: data.message,
+    };
+    return thunkAPI.rejectWithValue(error);
+  }
+});

@@ -8,14 +8,17 @@ import ChatLogs from 'components/ChatLogs';
 import { Container, ChatContainer, LogsContainer, MessagesContainer } from './Chat.styled';
 
 const ChatPage = () => {
-  const navigate = useNavigate();
-  const isLoggedIn = useSelector(authSelectors.getUserToken);
+  // const navigate = useNavigate();
+  // const isLoggedIn = useSelector(authSelectors.getUserToken);
+  // console.log(isLoggedIn);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/login');
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate('/login');
+  //   } else {
+  //     navigate('/');
+  //   }
+  // }, [isLoggedIn, navigate]);
 
   return (
     <Container>

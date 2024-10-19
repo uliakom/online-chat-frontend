@@ -1,12 +1,15 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  // baseURL: 'https://online-chat-backend-kzsu.onrender.com',
-  baseURL: 'https://online-chat-backend-seven.vercel.app/',
+  baseURL: 'online-chat-backend-seven.vercel.app',
   // baseURL: 'http://localhost:3001',
   timeout: 10000,
 });
 export default instance;
+
+export function unsetToken() {
+  instance.defaults.headers.common.Authorization = '';
+}
 
 
 export const register = async credentials => {
@@ -35,6 +38,18 @@ export const logIn = async credentials => {
     return data;
   } catch (error) {
     console.error('An error occurred during login:', error);
+    throw error;
+  }
+};
+
+export const logout = async () => {
+  try {
+    const data = await instance.get('/logout');
+    unsetToken();
+    localStorage.removeItem('refreshToken');
+    return data;
+  } catch (error) {
+    console.error('An error occurred during logout:', error);
     throw error;
   }
 };

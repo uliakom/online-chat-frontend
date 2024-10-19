@@ -17,10 +17,10 @@ function App() {
       <GlobalStyle />
       <Suspense fallback={<Loader />}>
         <Routes>
+          <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
           <Route path="/setavatar" element={<AvatarPage />} />
-          <Route path="/" element={<ChatPage />} />
+          <Route path="/chat" element={<ChatPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

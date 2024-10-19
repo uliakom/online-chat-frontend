@@ -13,7 +13,7 @@ const handleUserEnter = (state, { payload }) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: { username: null, email: null },
+    user: { name: null, email: null },
     token: null,
     error: null,
     errorCode: null,

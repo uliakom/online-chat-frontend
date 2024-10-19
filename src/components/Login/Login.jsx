@@ -2,6 +2,7 @@ import GoogleBtn from './GoogleBtn';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Link } from 'components/Register/Register.styled';
 import { Title, BtnWrapp, ErrorMsg } from './Login.styled';
@@ -23,18 +24,24 @@ const Loginform = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginStatusCode = useSelector(authSelectors.selectErrorCode);
+  const isUserLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
 
-  const handleSubmit = values => {
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      console.log('User loggined', isUserLoggedIn);
+      navigate('/chat');
+    }
+  }, [isUserLoggedIn]);
+
+  const handleSubmit = async values => {
     const { email, password } = values;
-    dispatch(logIn({ email, password }));
+    const response = await dispatch(logIn({ email, password }));
+
     if (loginStatusCode === 403) {
       Report.failure(' Failure', 'Email not verified', 'Ok');
     }
     if (loginStatusCode === 401) {
       Report.failure(' Failure', 'Email or password is wrong', 'Ok');
-    }
-    if (loginStatusCode === 204) {
-      navigate('/', { replace: true });
     }
   };
 
